@@ -21,6 +21,7 @@ func main() {
 		})
 	})
 
-	r.GET("/products/:id", controller.GetProductByID)
-	r.Run() // listen and serve on 0.0.0.0:8080
+	r.GET("/product/:id", controller.GetProductByID)
+	r.GET("/products", controller.GetProducts)
+	r.Run() // listen and serve on 0.0.0.0:9000
 }
