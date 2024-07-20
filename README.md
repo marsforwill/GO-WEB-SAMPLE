@@ -4,17 +4,26 @@ a sample golang web service for product read API service
 ## api: 
 there is two API for query product:/products/:id and /products,  refer to [API doc](https://github.com/marsforwill/GO-WEB-SAMPLE/blob/main/API.md)
 
-## database: 
-选择可扩展的关系型数据库 postgre server hosted in Azure, init.sql .. password
+## database: PostGreSQL
+1. **Scalable Relational Database**:
+   We use PostgreSQL, a powerful, open-source object-relational database system to store data commonly. Hosting the server on a personal private Azure cloud instance allows for easy access and scalability. This setup eliminates the need for local database configuration and ensures that the backend server can be easily accessed and runnable from anywhere.
+   ![image](https://github.com/user-attachments/assets/d96e88f9-a0ad-4101-9beb-0487f22f6000)
+
+
+3. **Database Initialization**:
+   The corresponding table/indices and some data injection can be viewed in the [`init.sql`](https://github.com/marsforwill/GO-WEB-SAMPLE/blob/main/init.sql).
+
+4. **Database Connection Parameters**:
+   The database connection parameters can be found in the `.env` file. While storing sensitive information in plain text is not a best practice, this is done here for ease of use and to facilitate running the project. The credentials and database instance information will be removed/updated soon for personal security.
+
+5. **Database visualization**:
+   You can use the connection parameters provided in the `.env` file with any PostgreSQL visualization tool to connect to the cloud-hosted database. This allows you to view and modify the data directly.
+   <img width="1117" alt="image" src="https://github.com/user-attachments/assets/a459ee41-6ef6-4b6d-9bd2-d1cab47110b0">
+
 
 ## web backend frame:
 ### Gin 
 Gin is a high-performance HTTP web framework written in Golang. It provides a robust set of features for building web applications and APIs. Key features of Gin include:
-
-- **Fast**: Gin uses httprouter, which provides a lightweight and fast HTTP request router.
-- **Middleware**: Gin supports middleware, allowing you to easily extend and customize your application.
-- **Crash-Free**: Gin includes a built-in recovery mechanism that prevents the server from crashing.
-- **Routing**: Gin provides easy-to-use and powerful routing capabilities.
 
 For more information, visit the [Gin Documentation](https://gin-gonic.com/docs/quickstart/).
 
@@ -22,17 +31,12 @@ For more information, visit the [Gin Documentation](https://gin-gonic.com/docs/q
 
 GORM is the fantastic ORM library for Golang. It simplifies database operations and includes features like ORM, hooks, preload, transactions, and more. Key features of GORM include:
 
-- **Full-Featured ORM**: Supports CRUD operations, associations (including has one, has many, belongs to, and many to many), hooks, eager loading, and more.
-- **Migrations**: Provides schema migrations that can be integrated with your codebase.
-- **SQL Builder**: Allows you to construct complex SQL queries.
-- **Extendable**: GORM can be extended with plugins for additional functionality.
-
 For more information, visit the [GORM Documentation](https://gorm.io/docs/index.html).
 
 
-## test:
-###  E2E test: 
-highly recommended to run server through the github codebase virtual environment, which means that you do not need to do any environment configuration locally, just through the browser, you can see the server and API response
+## run&test:
+###  run&test in cloud: 
+highly recommended to run server through the github codebase virtual environment, which means that you **do not need to do any environment configuration locally**, just through the browser, you can see the server and API response
 1) fork this repo and start/enter the corresponding [codeSpaces](https://docs.github.com/en/codespaces/overview)
 <img width="1085" alt="image" src="https://github.com/user-attachments/assets/a7f47e54-a6e3-4318-980e-e3b25821cd9e">
 2) in codeSpace, no need to set up any dependency, you can run server in root directory by command:
@@ -40,7 +44,7 @@ highly recommended to run server through the github codebase virtual environment
 3) after server start, you can easily check the api and server status by your own query
 <img width="1102" alt="image" src="https://github.com/user-attachments/assets/9042d2ba-4d86-49be-942a-e748116dbd9b">
 
-
+You can still run it locally as long as the environment is fully prepared (mainly golang sdk and package dependencies)
 
 ### unit test: 
 in test folder GO-WEB-SAMPLE/src/test, run command: go test -v, and you can see unit test output and result like this, it will ingest some test data into the same db instance, and verify the controller function output 
