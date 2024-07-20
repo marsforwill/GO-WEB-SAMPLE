@@ -53,6 +53,6 @@ in test folder GO-WEB-SAMPLE/src/test, run command: go test -v, and you can see 
 
 ## other things:
 we can scale this service if bottleneck in:
-database: scale the PostgreSQL database Vertical/Horizontal/Partitioning/Sharding
-web service: multi web instance
-lantency: Caching 
+- database: scale the PostgreSQL database Vertical/Horizontal/Partitioning/Sharding
+- web service: multi web instance
+- lantency: Caching 
