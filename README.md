@@ -6,7 +6,7 @@ there is two API for query product:/products/:id and /products,  refer to [API d
 
 ## database: PostGreSQL
 1. **Scalable Relational Database**:
-   We use PostgreSQL, a powerful, open-source object-relational database system to store data commonly. Hosting the server on a personal private Azure cloud instance allows for easy access and scalability. This setup eliminates the need for local database configuration and ensures that the backend server can be easily accessed and runnable from anywhere.
+   It use PostgreSQL, a powerful, open-source object-relational database system to store data commonly. Hosting the server on a personal private Azure cloud instance allows for easy access and scalability. This setup eliminates the need for local database configuration and ensures that the backend server can be easily accessed and runnable from anywhere.
    ![image](https://github.com/user-attachments/assets/d96e88f9-a0ad-4101-9beb-0487f22f6000)
 
 
@@ -42,7 +42,8 @@ highly recommended to run server through the github codebase virtual environment
 2) in codeSpace, no need to set up any dependency, you can run server in root directory by command:
 <img width="1000" alt="image" src="https://github.com/user-attachments/assets/8795c0ba-98be-4c57-a6e6-d80b546c45e1">
 3) after server start, you can easily check the api and server status by your own query
-<img width="1102" alt="image" src="https://github.com/user-attachments/assets/9042d2ba-4d86-49be-942a-e748116dbd9b">
+<img width="872" alt="image" src="https://github.com/user-attachments/assets/ee76aeb6-27fc-4c12-ba2b-a2028d47bca9">
+
 
 You can still run it locally as long as the environment is fully prepared (mainly golang sdk and package dependencies)
 
