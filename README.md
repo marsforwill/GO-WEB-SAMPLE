@@ -1,5 +1,5 @@
 # GO-WEB-SAMPLE
-a sample golang web service for product read API service
+a sample golang web service for product read API, using azure postgreSQL as database, using common Golang web frame Gin and Gorm, using github codeSpace as dev/run/test env.
 
 ## api: 
 there is two API for query product:/products/:id and /products,  refer to [API doc](https://github.com/marsforwill/GO-WEB-SAMPLE/blob/main/API.md)
@@ -52,3 +52,7 @@ in test folder GO-WEB-SAMPLE/src/test, run command: go test -v, and you can see 
 
 
 ## other things:
+we can scale this service if bottleneck in:
+database: scale the PostgreSQL database Vertical/Horizontal/Partitioning/Sharding
+web service: multi web instance
+lantency: Caching 
