@@ -28,14 +28,12 @@ COMMENT ON COLUMN products.deleted_at IS 'Deletion timestamp, nullable, for soft
 CREATE INDEX idx_products_name ON products(name);
 COMMENT ON INDEX idx_products_name IS 'Index created on product name';
 
-CREATE INDEX idx_products_category ON products(category);
+CREATE INDEX idx_products_category ON products(category); -- filter by category
 COMMENT ON INDEX idx_products_category IS 'Index created on product category';
 
-CREATE INDEX idx_products_price ON products USING BRIN(price);
+CREATE INDEX idx_products_price ON products USING BRIN(price); -- because price is used for range filter
 COMMENT ON INDEX idx_products_price IS 'BRIN index created on product price';
 
-CREATE INDEX idx_products_created_at ON products(created_at);
-COMMENT ON INDEX idx_products_created_at IS 'Index created on creation timestamp';
 
 -- Insert sample data into products table
 INSERT INTO products (name, category, price, description, stock_quantity, created_at, updated_at)

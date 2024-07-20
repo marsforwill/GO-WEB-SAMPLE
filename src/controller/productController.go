@@ -15,6 +15,7 @@ const (
 	defaultSortOrder = "desc"
 )
 
+// Retrieves a product by its ID.
 func GetProductByID(c *gin.Context) {
 	// get id from url
 	id := c.Param("id")
@@ -30,6 +31,7 @@ func GetProductByID(c *gin.Context) {
 	})
 }
 
+// Retrieves a list of products with optional filters for category and price range, along with pagination and sorting options.
 func GetProducts(c *gin.Context) {
 	var products []models.Product
 	var count int64

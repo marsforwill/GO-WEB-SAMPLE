@@ -6,9 +6,10 @@ import (
 	"github.com/joho/godotenv"
 )
 
-func LoadEnv(){
+// Load will read your env file(s) and load them into ENV for later usage
+func LoadEnv() {
 	err := godotenv.Load()
 	if err != nil {
-		log.Fatal("err loading .env file")
+		log.Fatalf("err loading .env file %v", err)
 	}
 }

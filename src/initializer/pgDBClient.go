@@ -10,6 +10,7 @@ import (
 
 var DBClient *gorm.DB
 
+// connect cloud(azure) db server so that we can use DBClient later
 func ConnectToDB() {
 	var err error
 	dbConnString := os.Getenv("DB_Connect")
