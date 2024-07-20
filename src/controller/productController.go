@@ -7,14 +7,23 @@ import (
 	"strconv"
 
 	"github.com/gin-gonic/gin"
+	"gorm.io/gorm"
+)
+
+const (
+	defaultPageSize  = 10
+	defaultSortOrder = "desc"
 )
 
 func GetProductByID(c *gin.Context) {
 	// get id from url
 	id := c.Param("id")
-
 	var product models.Product
-	initializer.DBClient.First(&product, id)
+
+	if err := initializer.DBClient.First(&product, id).Error; err != nil {
+		c.JSON(http.StatusNotFound, gin.H{"error": "Product not found"})
+		return
+	}
 
 	c.JSON(http.StatusOK, gin.H{
 		"product": product,
@@ -25,6 +34,32 @@ func GetProducts(c *gin.Context) {
 	var products []models.Product
 	var count int64
 
+	query, pageInt, pageSizeInt, sortOrder := buildGetProductsQuery(c)
+
+	// Get total count for pagination
+	if err := query.Count(&count).Error; err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to count products"})
+		return
+	}
+
+	if err := query.Order("created_at " + sortOrder).
+		Offset((pageInt - 1) * pageSizeInt).
+		Limit(pageSizeInt).
+		Find(&products).Error; err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to retrieve products"})
+		return
+	}
+
+	// Send response
+	c.JSON(http.StatusOK, gin.H{
+		"total_count": count,
+		"page":        pageInt,
+		"page_size":   pageSizeInt,
+		"products":    products,
+	})
+}
+
+func buildGetProductsQuery(c *gin.Context) (*gorm.DB, int, int, string) {
 	// Get filter parameters from URL
 	category := c.Query("category")
 	priceMin := c.Query("price_min")
@@ -40,12 +75,12 @@ func GetProducts(c *gin.Context) {
 		pageInt = 1
 	}
 	if pageSizeInt <= 0 {
-		pageSizeInt = 10
+		pageSizeInt = defaultPageSize
 	}
 
 	// Default sort order
 	if sortOrder != "asc" {
-		sortOrder = "desc"
+		sortOrder = defaultSortOrder
 	}
 
 	// Build query
@@ -62,20 +97,5 @@ func GetProducts(c *gin.Context) {
 		query = query.Where("price <= ?", priceMaxFloat)
 	}
 
-	// Get total count for pagination
-	query.Count(&count)
-
-	// Apply pagination and sorting
-	query.Order("created_at " + sortOrder).
-		Offset((pageInt - 1) * pageSizeInt).
-		Limit(pageSizeInt).
-		Find(&products)
-
-	// Send response
-	c.JSON(http.StatusOK, gin.H{
-		"total_count": count,
-		"page":        pageInt,
-		"page_size":   pageSizeInt,
-		"products":    products,
-	})
+	return query, pageInt, pageSizeInt, sortOrder
 }

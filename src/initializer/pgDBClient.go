@@ -17,6 +17,6 @@ func ConnectToDB() {
 	if DBClient != nil && err == nil {
 		log.Println("postgre DB client init success")
 	} else {
-		log.Fatal("postgre DB client init error:", err)
+		log.Fatalf("postgre DB client init error: %v", err)
 	}
 }
