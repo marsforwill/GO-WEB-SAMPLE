@@ -35,8 +35,8 @@ For more information, visit the [GORM Documentation](https://gorm.io/docs/index.
 
 
 ## run&test:
-###  run&test in cloud: 
-highly recommended to run server through the github codebase virtual environment, which means that you **do not need to do any environment configuration locally**, just through the browser, you can see the server and API response
+###  run&test in codespace: 
+highly recommended to run server through the github codespace virtual environment, which means that you **do not need to do any environment configuration locally**, just through the browser, you can see the server and API response
 1) fork this repo and start/enter the corresponding [codeSpaces](https://docs.github.com/en/codespaces/overview)
 <img width="1085" alt="image" src="https://github.com/user-attachments/assets/a7f47e54-a6e3-4318-980e-e3b25821cd9e">
 2) in codeSpace, no need to set up any dependency, you can run server in root directory by command:
