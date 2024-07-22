@@ -16,7 +16,7 @@ import (
 )
 
 // here we use the same database test for convenience, because we wont build another db instance. ideally we should isolate the db between prod and test env 
-var testDBConnString = "host=devpostgre.postgres.database.azure.com user=azureuser password=mars12345678. dbname=postgres port=5432 sslmode=require"
+var testDBConnString = ""
 
 func TestGetProductByID(t *testing.T) {
 	gin.SetMode(gin.TestMode)
